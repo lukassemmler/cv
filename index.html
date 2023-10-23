@@ -45,11 +45,16 @@
       top: 0;
       left: 0;
       bottom: 0;
-      z-index: -1;
       background-color: rgba(0, 0, 0, 0.05);
-      padding: 4rem 2rem 2rem 2rem;
+      padding: 3.5rem 2.5rem 2rem;
       width: 14rem;
       box-sizing: border-box;
+    }
+
+    .aside-heading {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
     }
 
     main {
@@ -120,6 +125,8 @@
     }
 
     .portrait {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
       display: flex;
@@ -149,6 +156,16 @@
     .inline-list li:not(:last-child)::after {
       content: "//";
       margin-left: 0.4em;
+    }
+
+    .simple-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .simple-list>*:not(:last-child) {
+      margin-bottom: 0.25em;
     }
 
     .header-main {
@@ -242,7 +259,7 @@
 
     .cv-record-description {
       font-weight: 500;
-      line-height: 1.4;
+      line-height: 1.5;
       color: rgba(0, 0, 0, 0.6);
 
     }
@@ -274,10 +291,16 @@
     </header>
     <div class="main-content">
       <aside>
-        <h2>Leidenschaft</h2>
-        <h2>Portfolio</h2>
-        <h2>Software</h2>
-        <h2>Code</h2>
+        <!--
+        <h2 class="aside-heading">Leidenschaft</h2>
+        <tag-list data-entry="passion"></tag-list>
+        -->
+        <h2 class="aside-heading">Portfolio</h2>
+        <tag-list data-entry="portfolio"></tag-list>
+        <h2 class="aside-heading">Software</h2>
+        <tag-list data-entry="software"></tag-list>
+        <h2 class="aside-heading">Code</h2>
+        <tag-list data-entry="code"></tag-list>
       </aside>
       <main>
         <h2>Berufserfahrung</h2>
@@ -318,44 +341,58 @@
   </div>
   <script>
     const tags = [
-      { group: "passion",
-     items: [
-
-     ]},
-      "Leidenschaft",
-      "UI-Design",
-      "Webdev",
-      "Zeichnen",
-      "Portfolio",
-      "lukassemmler.de",
-      "Software",
-      "Adobe Illustrator",
-      "Adobe InDesign",
-      "Adobe Lightroom",
-      "Adobe Photoshop",
-      "Adobe XD",
-      "Android Studio",
-      "Axure",
-      "Blender",
-      "Cinema4D",
-      "Godot",
-      "Jira",
-      "Microsoft Office",
-      "Unity",
-      "VS Code",
-      "Webstorm",
-      "Code",
-      "C#",
-      "Git",
-      "Gulp",
-      "Java",
-      "JavaScript",
-      "HTML & CSS",
-      "MySQL",
-      "NodeJS",
-      "Phaser",
-      "SASS",
-      "VueJS",
+      {
+        group: "passion",
+        items: [
+          "UI-Design",
+          "Webdev",
+          "Zeichnen",
+        ]
+      },
+      {
+        group: "portfolio",
+        items: [
+          "lukassemmler.de",
+        ]
+      },
+      {
+        group: "software",
+        items: [
+          "Adobe Illustrator",
+          "Adobe InDesign",
+          "Adobe Lightroom",
+          "Adobe Photoshop",
+          "Adobe XD",
+          "Android Studio",
+          "Axure",
+          "Blender",
+          "Cinema4D",
+          "Godot",
+          "Jira",
+          "Microsoft Office",
+          "Sketch",
+          "Unity",
+          "VS Code",
+          "Webstorm",
+        ]
+      },
+      {
+        group: "code",
+        items: [
+          "C#",
+          "Git",
+          "Gulp",
+          "Java",
+          "JavaScript",
+          "HTML & CSS",
+          "MySQL",
+          "NodeJS",
+          "Phaser",
+          "Python",
+          "SASS",
+          "VueJS",
+        ]
+      },
     ];
 
     const entries = [
@@ -407,6 +444,7 @@
         finished: "Mrz 2020",
         location: "München",
         description: [
+          "Stipendium der CSU-nahen Stiftung. ",
           "Förderung durch Seminare wie Rhetorikkurse, ",
           "Infoakademien zu gesellschaftspolitischen Themen, ",
           "Kontakt zu Mitstipendiaten. ",
@@ -440,9 +478,10 @@
       },
     ];
 
-    function h(tag, content) {
+    function h(tag, content = undefined) {
       const element = document.createElement(tag);
-      element.textContent = content;
+      if (content)
+        element.textContent = content;
       return element;
     }
 
@@ -472,7 +511,23 @@
       }
     }
 
+    function populateTagLists(document, tags) {
+      const tagLists = Array.from(document.querySelectorAll("tag-list"));
+      for (const tagList of tagLists) {
+        const listId = tagList.dataset.entry;
+        const list = tags.find(tagGroup => tagGroup.group === listId);
+        if (!list) continue;
+        const { group, items } = list;
+        const listElement = h("ul");
+        listElement.classList.add("simple-list");
+        const itemElements = items.map(item => h("li", item));
+        itemElements.forEach(itemElement => listElement.appendChild(itemElement));
+        tagList.appendChild(listElement);
+      }
+    }
+
     populateCvRecords(document, entries);
+    populateTagLists(document, tags);
   </script>
 </body>
 
