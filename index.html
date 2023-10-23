@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lukas Semmler</title>
+  <style>
+    html {
+      font-family: 'Fira Sans', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-container {
+      width: 210mm;
+      height: 297mm;
+      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+      margin: 2rem auto;
+      border-radius: 5mm;
+      overflow: hidden;
+    }
+
+    @media print {
+      .main-container {
+        width: unset;
+        height: unset;
+        box-shadow: unset;
+        margin: unset;
+      }
+    }
+
+    header {
+      background-color: orange;
+      box-sizing: border-box;
+      height: 7rem;
+    }
+
+    aside {
+      position: relative;
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 4rem 1rem 1rem 1rem;
+      width: 12rem;
+      box-sizing: border-box;
+    }
+
+    main {
+      padding: 1rem 3rem;
+    }
+
+    .title-bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .title,
+    .subtitle {
+      font-size: 2rem;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .title {
+      font-weight: 500;
+    }
+
+    .subtitle {
+      font-weight: 300;
+      margin-left: 0.4em;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+    }
+
+    .header-content>*:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    .portrait-container {
+      width: 10rem;
+      height: 10rem;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      margin-bottom: -5rem;
+    }
+
+    .portrait {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      text-align: center;
+      object-fit: cover;
+      border-radius: 100%;
+      background-color: white;
+    }
+
+    .inline-list {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    .inline-list li {
+      display: inline-block;
+    }
+
+    .inline-list li:not(:last-child) {
+      margin-right: 0.4em;
+    }
+
+    .inline-list li:not(:last-child)::after {
+      content: "//";
+      margin-left: 0.4em;
+    }
+
+    .header-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .header-main>*:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+
+    address {
+      font-style: normal;
+      font-size: 0.9rem;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: row;
+      height: calc(100% - 7rem);
+    }
+
+    .cv-record-item {
+      position: relative;
+      margin-bottom: 3em;
+      padding-left: 2em;
+    }
+
+    .cv-record-item.level-1 {
+      margin-left: 2em;
+      font-size: 0.9em;
+    }
+
+    .cv-record-item.level-2 {
+      margin-left: 4em;
+      font-size: 0.8em;
+    }
+
+    .cv-record-header {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: baseline;
+      margin-bottom: 0.5em;
+      line-height: 1;
+    }
+
+    .cv-record-header>* {
+      margin-bottom: 0.4em;
+    }
+
+    .cv-record-header>*:not(:last-child) {
+      margin-right: 0.8em;
+    }
+
+    .cv-record-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1.2em;
+      height: 1.2em;
+    }
+
+    .cv-record-subtitle {
+      display: inline-block;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .cv-record-body>*:not(:last-child) {
+      margin-bottom: 0.6em;
+    }
+
+    .cv-record-body p {
+      margin: 0;
+    }
+
+    .cv-record-details {
+      display: inline-block;
+      font-size: 0.9em;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .cv-record-description {
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.6);
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <header>
+      <div class="header-content">
+        <div class="portrait-container">
+          <img class="portrait" src="portrait-hairy.jpg" alt="Lukas Semmler">
+        </div>
+        <div class="header-main">
+          <div class="title-bar">
+            <h1 class="title">Lukas Semmler</h1>
+            <p class="subtitle">UX Designer</p>
+          </div>
+          <address>
+            <ul class="inline-list">
+              <li>Brehmstraße 2</li>
+              <li>81543 München</li>
+              <li>+49 176 3920 3916</li>
+              <li>kontakt@lukassemmler.de</li>
+            </ul>
+          </address>
+        </div>
+      </div>
+    </header>
+    <div class="main-content">
+      <aside>
+        <h2>Leidenschaft</h2>
+        <div class="template" <h2>Portfolio</h2>
+          <h2>Software</h2>
+          <h2>Code</h2>
+      </aside>
+      <main>
+        <h2>Projekte</h2>
+        <cv-record data-entry="dvhaus"></cv-record>
+        <cv-record data-entry="eforce"></cv-record>
+        <h2>Berufserfahrung</h2>
+        <h2>Ausbildung</h2>
+        <h2>Sonstiges</h2>
+      </main>
+    </div>
+  </div>
+  <template id="cv-record">
+    <article class="cv-record-item" :class="'level-' + level">
+      <div class="cv-record-header">
+        <h3 class="cv-record-title">
+          <slot name="title">Some title</slot>
+        </h3>
+        <span class="cv-record-subtitle">
+          <slot name="subtitle">Some subtitle</slot>
+        </span>
+      </div>
+      <div class="cv-record-body">
+        <span class="cv-record-details">
+          <slot name="started">Start</slot> &ndash;
+          <slot name="finished">End</slot> /
+          <slot name="location">Location</slot>
+        </span>
+        <p class="cv-record-description">
+          <slot name="description"></slot>
+        </p>
+      </div>
+    </article>
+  </template>
+  <script>
+    const tags = [
+      "Leidenschaft",
+      "UI-Design",
+      "Webdev",
+      "Zeichnen",
+      "Portfolio",
+      "lukassemmler.de",
+      "Software",
+      "Adobe Illustrator",
+      "Adobe InDesign",
+      "Adobe Lightroom",
+      "Adobe Photoshop",
+      "Adobe XD",
+      "Android Studio",
+      "Axure",
+      "Blender",
+      "Cinema4D",
+      "Godot",
+      "Jira",
+      "Microsoft Office",
+      "Unity",
+      "VS Code",
+      "Webstorm",
+      "Code",
+      "C#",
+      "Git",
+      "Gulp",
+      "Java",
+      "JavaScript",
+      "HTML & CSS",
+      "MySQL",
+      "NodeJS",
+      "Phaser",
+      "SASS",
+      "VueJS",
+    ];
+
+    const entries = [
+      {
+        id: "dvhaus",
+        title: "dvhaus Software & Solutions GmbH",
+        subtitle: "UX-Designer",
+        started: "Jan 2021",
+        finished: "heute",
+        location: "Oberhaching",
+        description: [
+          "UI-Design für Textprogramm der Justiz. ",
+          "Design und Bedienungs-Spezifikationen von Steuerelementen. ",
+          "Intensive Arbeit mit Sketch und Automatisierung mit eigenen Skripten. ",
+          "Zusammenarbeit mit Barrierefreiheits-Spezialisten. "
+        ],
+      },
+      {
+        id: "eforce",
+        title: "eForce21 GmbH ",
+        subtitle: "Praxissemester",
+        started: "Aug 2018",
+        finished: "Dez 2018",
+        location: "München",
+        description: [
+          "Entwicklung der neuen Unternehmenswebseite mit Magnolia und FreeMarker. ",
+          "Prototyping in HTML & CSS. Anfertigen von Werbebannern. ",
+          "Java Bootcamp mit Spring. Wireframes für Webseite. ",
+        ],
+      },
+      {
+        id: "mbook",
+        title: "Cornelsen mBook Verlag ",
+        subtitle: "Praktikum",
+        started: "Jul 2017",
+        finished: "Sep 2017",
+        location: "Eichstätt",
+        description: [
+          "Arbeit an digitalen Schulbüchern. ",
+          "Konzeption von Hausaufgaben-Korrekturen. ",
+          "Schneiden eines Hörbuches. Recherchearbeit. ",
+        ],
+      },
+      {
+        id: "hss",
+        title: "Hanns-Seidel-Stiftung ",
+        subtitle: "Altstipendiat",
+        started: "Apr 2018",
+        finished: "Mrz 2020",
+        location: "München",
+        description: [
+          "Förderung durch Seminare wie Rhetorikkurse, ",
+          "Infoakademien zu gesellschaftspolitischen Themen, ",
+          "Kontakt zu Mitstipendiaten. ",
+        ],
+      },
+      {
+        id: "bachelor",
+        title: "Videospiel-UI ",
+        subtitle: "Bachelorarbeit",
+        started: "Okt 2019",
+        finished: "Mrz 2020",
+        location: "Ingolstadt",
+        description: [
+          "UI-Konzept für ein Simulationsspiel nach dem User-Centered-Design-Prozess. ",
+          "Recherche, Wireframes, Skizzen, UI-Design, Prototyping, Programmierung, ",
+          "User Testing, Unity, Phaser. (1,3),",
+        ],
+      },
+      {
+        id: "uni",
+        title: "Technische Hochschule Ingolstadt",
+        subtitle: "UX Design B.Sc.",
+        started: "Okt 2016",
+        finished: "Sep 2020",
+        location: "Ingolstadt",
+        description: [
+          "Studium der benutzerzentrierter Gestaltung und UI-Design (UXD). ",
+          "Lernen von Design, Nutzertests, Programmieren und Psychologie. ",
+          "Abschluss mit 1,3.",
+        ],
+      },
+    ];
+
+
+    customElements.define(
+      "cv-record",
+      class extends HTMLElement {
+        constructor() {
+          super();
+          const template = document.getElementById("cv-record").content;
+          const shadowRoot = this.attachShadow({ mode: "open" });
+          shadow.innerHtml = `
+
+          `;
+          shadowRoot.appendChild(template.cloneNode(true));
+        }
+      }
+    );
+
+    function h(tag, content) {
+      const element = document.createElement(tag);
+      element.textContent = content;
+      return element;
+    }
+
+    function autofillCvRecord(entries, element) {
+      const entryId = element.dataset.entry;
+      const entry = entries.find(entry => entry.id === entryId);
+      if (!entry) return;
+      const props = Object.keys(entry);
+      const slotElements = Array.from(element.shadowRoot.querySelectorAll('slot'));
+      for (const prop of props) {
+        const slotElement = slotElements.find(element => element.name === prop);
+        if (!slotElement) continue;
+        const value = entry[prop];
+        const valueFormatted = Array.isArray(value) ? value.join("") : value;
+        slotElement.replaceChildren(h("span", valueFormatted));
+      }
+    }
+
+    function populateCvRecords(document, entries) {
+      const cvRecords = Array.from(document.querySelectorAll("cv-record"));
+      for (const record of cvRecords)
+        autofillCvRecord(entries, record);
+    }
+
+    populateCvRecords(document, entries);
+  </script>
+</body>
+
+</html>
