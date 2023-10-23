@@ -106,7 +106,7 @@
       column-gap: 2rem;
     }
 
-    aside > *:first-child {
+    aside>*:first-child {
       margin-top: 0;
     }
 
@@ -114,6 +114,11 @@
       font-size: 1.25rem;
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
+    }
+
+    .link-invisible {
+      color: unset;
+      text-decoration: unset;
     }
 
     main {
@@ -308,69 +313,68 @@
       line-height: 1.5;
       color: rgba(0, 0, 0, 0.6);
     }
-    
-@media (min-width: 640px) {
-    .main-container {
-      width: 210mm;
-      height: 297mm;
-      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
-      margin: 2rem auto;
-      border-radius: 5mm;
-      overflow: hidden;
-    }
-    
-    .header-content {
-      flex-direction: row;
-    }
 
-.header-content>*:not(:first-child) {
-  margin-left: 2rem;
-}
+    @media (min-width: 640px) {
+      .main-container {
+        width: 210mm;
+        height: 297mm;
+        box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+        margin: 2rem auto;
+        border-radius: 5mm;
+        overflow: hidden;
+      }
 
-    .title-bar {
-      flex-direction: row;
-    }
-    
-    .inline-list {
-      flex-flow: row;
-      align-items: flex-start;
-    }
-    
-    .inline-list li:not(:last-child) {
-      margin-right: 0.4em;
-    }
+      .header-content {
+        flex-direction: row;
+      }
 
-    .inline-list li:not(:last-child)::after {
-      content: "//";
-      margin-left: 0.4em;
-    }
+      .header-content>*:not(:first-child) {
+        margin-left: 2rem;
+      }
 
-    .header {
-      height: 8rem;
-    }
-    
-    .portrait-container {
-      margin-bottom: -5rem;
-    }
-    
-    aside {
-      position: absolute;
-      padding: 3.5rem 2.5rem 2rem;
-      width: 14rem;
-      column-count: 1;
-    }
-    
-    aside > *:first-child {
-      margin-top: 1.5rem;
-    }
-    
-    main {
-      position: absolute;
-      width: calc(100% - 14rem);
-      padding: 1rem 3rem;
-    }
-}
+      .title-bar {
+        flex-direction: row;
+      }
 
+      .inline-list {
+        flex-flow: row;
+        align-items: flex-start;
+      }
+
+      .inline-list li:not(:last-child) {
+        margin-right: 0.4em;
+      }
+
+      .inline-list li:not(:last-child)::after {
+        content: "//";
+        margin-left: 0.4em;
+      }
+
+      .header {
+        height: 8rem;
+      }
+
+      .portrait-container {
+        margin-bottom: -5rem;
+      }
+
+      aside {
+        position: absolute;
+        padding: 3.5rem 2.5rem 2rem;
+        width: 14rem;
+        column-count: 1;
+      }
+
+      aside>*:first-child {
+        margin-top: 1.5rem;
+      }
+
+      main {
+        position: absolute;
+        width: calc(100% - 14rem);
+        padding: 1rem 3rem;
+      }
+    }
   </style>
 </head>
 
@@ -391,7 +395,7 @@
               <li>Brehmstraße 2</li>
               <li>81543 München</li>
               <li>+49 176 3920 3916</li>
-              <li>kontakt@lukassemmler.de</li>
+              <li><a class="link-invisible" href="mailto:kontakt@lukassemmler.de">kontakt@lukassemmler.de</a></li>
             </ul>
           </address>
         </div>
