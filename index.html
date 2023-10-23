@@ -76,15 +76,6 @@
       padding: 0;
     }
 
-    .main-container {
-      width: 210mm;
-      height: 297mm;
-      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
-      margin: 2rem auto;
-      border-radius: 5mm;
-      overflow: hidden;
-    }
-
     @media print {
       .main-container {
         width: unset;
@@ -98,18 +89,25 @@
       background-color: #19A7FF;
       color: white;
       box-sizing: border-box;
-      height: 8rem;
+    }
+
+    header a {
+      color: unset;
     }
 
     aside {
-      position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
       background-color: rgba(0, 0, 0, 0.05);
-      padding: 3.5rem 2.5rem 2rem;
-      width: 14rem;
       box-sizing: border-box;
+      padding: 1.5rem 2rem;
+      column-count: 2;
+      column-gap: 2rem;
+    }
+
+    aside > *:first-child {
+      margin-top: 0;
     }
 
     .aside-heading {
@@ -119,12 +117,10 @@
     }
 
     main {
-      position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      width: calc(100% - 14rem);
-      padding: 1rem 3rem;
+      padding: 1.5rem 2rem;
       box-sizing: border-box;
     }
 
@@ -146,7 +142,7 @@
 
     .title-bar {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
     }
 
@@ -168,12 +164,9 @@
 
     .header-content {
       display: flex;
-      flex-direction: row;
+      align-items: center;
+      flex-direction: column;
       padding: 1.5rem 2rem;
-    }
-
-    .header-content>*:not(:first-child) {
-      margin-left: 2rem;
     }
 
     .portrait-container {
@@ -182,7 +175,7 @@
       display: flex;
       justify-items: center;
       align-items: center;
-      margin-bottom: -5rem;
+      margin-bottom: 1rem;
     }
 
     .portrait {
@@ -196,27 +189,21 @@
       text-align: center;
       object-fit: cover;
       border-radius: 100%;
-      background-color: white;
+      background-color: #333333;
     }
 
     .inline-list {
       list-style-type: none;
       display: flex;
+      flex-flow: column;
+      align-items: center;
       padding: 0;
       margin: 0;
     }
 
     .inline-list li {
       display: inline-block;
-    }
-
-    .inline-list li:not(:last-child) {
-      margin-right: 0.4em;
-    }
-
-    .inline-list li:not(:last-child)::after {
-      content: "//";
-      margin-left: 0.4em;
+      line-height: 1.5;
     }
 
     .simple-list {
@@ -246,8 +233,6 @@
 
     .main-content {
       position: relative;
-      display: flex;
-      flex-direction: row;
       height: calc(100% - 8rem);
     }
 
@@ -322,8 +307,70 @@
       font-weight: 500;
       line-height: 1.5;
       color: rgba(0, 0, 0, 0.6);
-
     }
+    
+@media (min-width: 640px) {
+    .main-container {
+      width: 210mm;
+      height: 297mm;
+      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+      margin: 2rem auto;
+      border-radius: 5mm;
+      overflow: hidden;
+    }
+    
+    .header-content {
+      flex-direction: row;
+    }
+
+.header-content>*:not(:first-child) {
+  margin-left: 2rem;
+}
+
+    .title-bar {
+      flex-direction: row;
+    }
+    
+    .inline-list {
+      flex-flow: row;
+      align-items: flex-start;
+    }
+    
+    .inline-list li:not(:last-child) {
+      margin-right: 0.4em;
+    }
+
+    .inline-list li:not(:last-child)::after {
+      content: "//";
+      margin-left: 0.4em;
+    }
+
+    .header {
+      height: 8rem;
+    }
+    
+    .portrait-container {
+      margin-bottom: -5rem;
+    }
+    
+    aside {
+      position: absolute;
+      padding: 3.5rem 2.5rem 2rem;
+      width: 14rem;
+      column-count: 1;
+    }
+    
+    aside > *:first-child {
+      margin-top: 1.5rem;
+    }
+    
+    main {
+      position: absolute;
+      width: calc(100% - 14rem);
+      padding: 1rem 3rem;
+    }
+}
+
   </style>
 </head>
 
