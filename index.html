@@ -248,18 +248,15 @@
     .cv-record-item {
       position: relative;
       margin-bottom: 2em;
-      padding-left: 1em;
       font-size: 0.9rem;
     }
 
     .cv-record-item.level-1 {
-      margin-left: 2em;
-      font-size: 0.9em;
+      margin-left: 1em;
     }
 
     .cv-record-item.level-2 {
-      margin-left: 4em;
-      font-size: 0.8em;
+      margin-left: 2em;
     }
 
     .cv-record-header {
@@ -424,8 +421,8 @@
         <cv-record data-entry="eforce"></cv-record>
         <h2>Ausbildung</h2>
         <cv-record data-entry="uni"></cv-record>
-        <cv-record data-entry="bachelor"></cv-record>
-        <cv-record data-entry="hss"></cv-record>
+        <cv-record data-entry="bachelor" data-level="1"></cv-record>
+        <cv-record data-entry="hss" data-level="1"></cv-record>
         <!--
         <h2>Projekte</h2>
         <h2>Sonstiges</h2>
@@ -434,7 +431,7 @@
     </div>
   </div>
   <div id="cv-record-template" style="display: none;">
-    <article class="cv-record-item" :class="'level-' + level">
+    <article class="cv-record-item">
       <div class="cv-record-header">
         <h3 class="cv-record-title">
           <slot name="title">Some title</slot>
@@ -560,7 +557,7 @@
         finished: "Mrz 2020",
         location: "München",
         description: [
-          "Stipendium der CSU-nahen Stiftung. ",
+          "Stipendium für Studium wegen guter Leistungen. ",
           "Förderung durch Seminare wie Rhetorikkurse, ",
           "Infoakademien zu gesellschaftspolitischen Themen, ",
           "Kontakt zu Mitstipendiaten. ",
@@ -576,7 +573,7 @@
         description: [
           "UI-Konzept für ein Simulationsspiel nach dem User-Centered-Design-Prozess. ",
           "Recherche, Wireframes, Skizzen, UI-Design, Prototyping, Programmierung, ",
-          "User Testing, Unity, Phaser. (1,3),",
+          "User Testing, Unity, Phaser. (1,3)",
         ],
       },
       {
@@ -605,6 +602,8 @@
       const entryId = element.dataset.entry;
       const entry = entries.find(entry => entry.id === entryId);
       if (!entry) return;
+      const level = element.dataset.level ?? 1;
+      element.children[0].classList.add("level-" + level);
       const props = Object.keys(entry);
       const slotElements = Array.from(element.querySelectorAll('slot'));
       for (const prop of props) {
