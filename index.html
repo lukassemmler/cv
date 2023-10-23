@@ -52,6 +52,11 @@
       padding: 1rem 3rem;
     }
 
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
     .title-bar {
       display: flex;
       flex-direction: row;
@@ -148,8 +153,9 @@
 
     .cv-record-item {
       position: relative;
-      margin-bottom: 3em;
-      padding-left: 2em;
+      margin-bottom: 2em;
+      padding-left: 1em;
+      font-size: 0.9rem;
     }
 
     .cv-record-item.level-1 {
@@ -186,6 +192,10 @@
       height: 1.2em;
     }
 
+    .cv-record-title {
+      margin-top: 0;
+    }
+
     .cv-record-subtitle {
       display: inline-block;
       font-size: 1.2em;
@@ -210,6 +220,7 @@
 
     .cv-record-description {
       font-weight: 500;
+      line-height: 1.4;
       color: rgba(0, 0, 0, 0.6);
 
     }
@@ -242,21 +253,24 @@
     <div class="main-content">
       <aside>
         <h2>Leidenschaft</h2>
-        <div class="template" <h2>Portfolio</h2>
-          <h2>Software</h2>
-          <h2>Code</h2>
+        <h2>Portfolio</h2>
+        <h2>Software</h2>
+        <h2>Code</h2>
       </aside>
       <main>
-        <h2>Projekte</h2>
+        <h2>Berufserfahrung</h2>
         <cv-record data-entry="dvhaus"></cv-record>
         <cv-record data-entry="eforce"></cv-record>
-        <h2>Berufserfahrung</h2>
         <h2>Ausbildung</h2>
+        <cv-record data-entry="uni"></cv-record>
+        <cv-record data-entry="bachelor"></cv-record>
+        <cv-record data-entry="hss"></cv-record>
+        <h2>Projekte</h2>
         <h2>Sonstiges</h2>
       </main>
     </div>
   </div>
-  <template id="cv-record">
+  <div id="cv-record-template" style="display: none;">
     <article class="cv-record-item" :class="'level-' + level">
       <div class="cv-record-header">
         <h3 class="cv-record-title">
@@ -277,7 +291,7 @@
         </p>
       </div>
     </article>
-  </template>
+  </div>
   <script>
     const tags = [
       "Leidenschaft",
@@ -398,22 +412,6 @@
       },
     ];
 
-
-    customElements.define(
-      "cv-record",
-      class extends HTMLElement {
-        constructor() {
-          super();
-          const template = document.getElementById("cv-record").content;
-          const shadowRoot = this.attachShadow({ mode: "open" });
-          shadow.innerHtml = `
-
-          `;
-          shadowRoot.appendChild(template.cloneNode(true));
-        }
-      }
-    );
-
     function h(tag, content) {
       const element = document.createElement(tag);
       element.textContent = content;
@@ -425,9 +423,9 @@
       const entry = entries.find(entry => entry.id === entryId);
       if (!entry) return;
       const props = Object.keys(entry);
-      const slotElements = Array.from(element.shadowRoot.querySelectorAll('slot'));
+      const slotElements = Array.from(element.querySelectorAll('slot'));
       for (const prop of props) {
-        const slotElement = slotElements.find(element => element.name === prop);
+        const slotElement = slotElements.find(element => element.getAttribute("name") === prop);
         if (!slotElement) continue;
         const value = entry[prop];
         const valueFormatted = Array.isArray(value) ? value.join("") : value;
@@ -437,8 +435,13 @@
 
     function populateCvRecords(document, entries) {
       const cvRecords = Array.from(document.querySelectorAll("cv-record"));
-      for (const record of cvRecords)
+      const cvTemplate = document.getElementById("cv-record-template");
+      for (const record of cvRecords) {
+        const template = cvTemplate.children[0].cloneNode(true);
+        template.style = "";
+        record.appendChild(template);
         autofillCvRecord(entries, record);
+      }
     }
 
     populateCvRecords(document, entries);
