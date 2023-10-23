@@ -18,7 +18,7 @@
     .main-container {
       width: 210mm;
       height: 297mm;
-      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
       margin: 2rem auto;
       border-radius: 5mm;
       overflow: hidden;
@@ -34,22 +34,43 @@
     }
 
     header {
-      background-color: orange;
+      background-color: #19A7FF;
+      color: white;
       box-sizing: border-box;
-      height: 7rem;
+      height: 8rem;
     }
 
     aside {
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
       z-index: -1;
-      background-color: rgba(0, 0, 0, 0.1);
-      padding: 4rem 1rem 1rem 1rem;
-      width: 12rem;
+      background-color: rgba(0, 0, 0, 0.05);
+      padding: 4rem 2rem 2rem 2rem;
+      width: 14rem;
       box-sizing: border-box;
     }
 
     main {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: calc(100% - 14rem);
       padding: 1rem 3rem;
+      box-sizing: border-box;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      background-color: #19A7FF;
+      color: white;
+      height: 1.5rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 2rem;
+      box-sizing: border-box;
     }
 
     h2 {
@@ -82,11 +103,11 @@
     .header-content {
       display: flex;
       flex-direction: row;
-      padding: 1rem;
+      padding: 1.5rem 2rem;
     }
 
     .header-content>*:not(:first-child) {
-      margin-left: 1rem;
+      margin-left: 2rem;
     }
 
     .portrait-container {
@@ -137,18 +158,19 @@
     }
 
     .header-main>*:not(:first-child) {
-      margin-top: 0.25rem;
+      margin-top: 0.35rem;
     }
 
     address {
       font-style: normal;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .main-content {
+      position: relative;
       display: flex;
       flex-direction: row;
-      height: calc(100% - 7rem);
+      height: calc(100% - 8rem);
     }
 
     .cv-record-item {
@@ -232,7 +254,7 @@
     <header>
       <div class="header-content">
         <div class="portrait-container">
-          <img class="portrait" src="portrait-hairy.jpg" alt="Lukas Semmler">
+          <img class="portrait" src="lukas.jpg" alt="Lukas Semmler">
         </div>
         <div class="header-main">
           <div class="title-bar">
@@ -265,8 +287,10 @@
         <cv-record data-entry="uni"></cv-record>
         <cv-record data-entry="bachelor"></cv-record>
         <cv-record data-entry="hss"></cv-record>
+        <!--
         <h2>Projekte</h2>
         <h2>Sonstiges</h2>
+        -->
       </main>
     </div>
   </div>
@@ -294,6 +318,10 @@
   </div>
   <script>
     const tags = [
+      { group: "passion",
+     items: [
+
+     ]},
       "Leidenschaft",
       "UI-Design",
       "Webdev",
