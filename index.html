@@ -324,7 +324,7 @@
       padding-right: 1rem;
     }
 
-    .meta-box > *:not(:last-child) {
+    .meta-box>*:not(:last-child) {
       margin-right: 1rem;
     }
 
@@ -352,6 +352,9 @@
       background-color: #0540ac;
     }
 
+    .hide-on-mobile {
+      display: none;
+    }
 
     @media (min-width: 640px) {
       .main-container {
@@ -362,13 +365,13 @@
         border-radius: 5mm;
         overflow: hidden;
       }
-      
+
       .main-container.simplified {
         width: 100%;
         box-shadow: none;
         margin: 0 auto;
         border-radius: 0;
-      }   
+      }
 
       .header-content {
         flex-direction: row;
@@ -419,6 +422,10 @@
         position: absolute;
         width: calc(100% - 14rem);
         padding: 1rem 3rem;
+      }
+
+      .hide-on-mobile {
+        display: initial;
       }
     }
   </style>
@@ -476,7 +483,7 @@
     </div>
   </div>
   <div class="meta-box">
-    <button class="meta-button" id="display-simplified">Einfaches Design <br>(Strg + M)</button>
+    <button class="meta-button hide-on-mobile" id="display-simplified">Einfaches Design <br>(Strg + M)</button>
     <a class="meta-button" id="download-pdf" href="./lukas-semmler-cv.pdf">Download <br>als PDF</a>
   </div>
   <div id="cv-record-template" style="display: none;">
@@ -691,29 +698,30 @@
     }
 
     function setupSimpleDesignToggle(document, toggleButton, mainLayout, metaBar) {
-      const onToggle = function(event) {
+      const onToggle = function () {
         const simplifiedClass = "simplified";
-        if (event.ctrlKey && event.key === 'm') {
-          if (mainLayout.classList.contains(simplifiedClass)) {
-            mainLayout.classList.remove(simplifiedClass);
-            metaBar.style = "";
-            return;
-          }
-          mainLayout.classList.add(simplifiedClass);
-          metaBar.style = "display: none;";
-          event.preventDefault();
+        if (mainLayout.classList.contains(simplifiedClass)) {
+          mainLayout.classList.remove(simplifiedClass);
+          metaBar.style = "";
+          return;
         }
+        mainLayout.classList.add(simplifiedClass);
+        metaBar.style = "display: none;";
+        event.preventDefault();
       };
-      document.addEventListener('keydown', onToggle);
-      toggleButton.addEventListener('click', onToggle);
+      toggleButton.addEventListener('click', () => onToggle());
+      document.addEventListener('keydown', (event) => {
+        if (!event.ctrlKey || event.key !== 'm') return;
+        onToggle();
+      });
     }
 
     populateCvRecords(document, entries);
     populateTagLists(document, tags);
     setupSimpleDesignToggle(
-      document, 
-      document.getElementById("display-simplified"), 
-      document.querySelector(".main-container"), 
+      document,
+      document.getElementById("display-simplified"),
+      document.querySelector(".main-container"),
       document.querySelector(".meta-box")
     );
   </script>
