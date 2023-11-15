@@ -340,7 +340,7 @@
       min-width: 8em;
       text-decoration: none;
       text-align: center;
-      cursor: unset;
+      cursor: default;
     }
 
     .meta-button:hover,
@@ -362,6 +362,13 @@
         border-radius: 5mm;
         overflow: hidden;
       }
+      
+      .main-container.simplified {
+        width: 100%;
+        box-shadow: none;
+        margin: 0 auto;
+        border-radius: 0;
+      }   
 
       .header-content {
         flex-direction: row;
@@ -470,7 +477,7 @@
   </div>
   <div class="meta-box">
     <button class="meta-button" id="display-simplified">Einfaches Design <br>(Strg + M)</button>
-    <a class="meta-button" id="download-pdf" href="/lukas-semmler-cv.pdf">Download <br>als PDF</a>
+    <a class="meta-button" id="download-pdf" href="./lukas-semmler-cv.pdf">Download <br>als PDF</a>
   </div>
   <div id="cv-record-template" style="display: none;">
     <article class="cv-record-item">
@@ -706,7 +713,7 @@
     setupSimpleDesignToggle(
       document, 
       document.getElementById("display-simplified"), 
-      document.querySelector(".main-content"), 
+      document.querySelector(".main-container"), 
       document.querySelector(".meta-box")
     );
   </script>
